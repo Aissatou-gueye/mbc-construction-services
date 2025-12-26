@@ -1,7 +1,13 @@
-import { Building2, Truck, Mountain, HardHat, Phone, Mail, MapPin, Menu, X } from 'lucide-react';
+import { Building2, Truck, Mountain, HardHat, Phone, Mail, MapPin, Menu, X, Pickaxe, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import heroImage from '@/assets/hero-construction.jpg';
+import serviceConstruction from '@/assets/service-construction.jpg';
+import serviceDemolition from '@/assets/service-demolition.jpg';
+import serviceTerrassement from '@/assets/service-terrassement.jpg';
+import serviceExcavation from '@/assets/service-excavation.jpg';
+import serviceCamions from '@/assets/service-camions.jpg';
+import serviceMateriaux from '@/assets/service-materiaux.jpg';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +23,7 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <a href="#accueil" className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-accent-gradient rounded-lg flex items-center justify-center">
+          <div className="w-10 h-10 bg-gradient-to-r from-[hsl(32,95%,50%)] to-[hsl(25,95%,45%)] rounded-lg flex items-center justify-center">
             <HardHat className="w-6 h-6 text-primary-foreground" />
           </div>
           <span className="font-display text-2xl tracking-wider text-foreground">MBC</span>
@@ -143,31 +149,37 @@ const services = [
     icon: Building2,
     title: 'Travaux de Construction',
     description: 'Construction de bâtiments résidentiels, commerciaux et industriels avec des standards de qualité élevés.',
+    image: serviceConstruction,
   },
   {
-    icon: HardHat,
+    icon: Pickaxe,
     title: 'Démolition de Bâtiments',
     description: 'Services de démolition sécurisés et efficaces pour tous types de structures.',
+    image: serviceDemolition,
   },
   {
     icon: Mountain,
     title: 'Terrassement',
     description: 'Préparation et nivellement de terrains pour vos projets de construction.',
+    image: serviceTerrassement,
   },
   {
     icon: Building2,
     title: 'Excavation & Sous-terrains',
     description: 'Travaux d\'excavation de fouilles et création de structures souterraines.',
+    image: serviceExcavation,
   },
   {
     icon: Truck,
     title: 'Location de Camions',
     description: 'Flotte de camions disponible à la location pour vos besoins de transport.',
+    image: serviceCamions,
   },
   {
-    icon: Mountain,
+    icon: Package,
     title: 'Fourniture de Matériaux',
     description: 'Gravier basalte 3/8, 8/16 et sable de qualité pour tous vos chantiers.',
+    image: serviceMateriaux,
   },
 ];
 
@@ -181,21 +193,36 @@ const ServicesSection = () => (
       <div className="text-center mb-16">
         <span className="text-primary font-semibold text-sm tracking-wider uppercase">Ce Que Nous Faisons</span>
         <h2 className="font-display text-4xl md:text-6xl text-foreground mt-2">NOS SERVICES</h2>
-        <div className="w-24 h-1 bg-accent-gradient mx-auto mt-4 rounded-full" />
+        <div className="w-24 h-1 bg-gradient-to-r from-[hsl(32,95%,50%)] to-[hsl(25,95%,45%)] mx-auto mt-4 rounded-full" />
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map((service, index) => (
           <div 
             key={service.title}
-            className="group bg-secondary/50 border border-border rounded-xl p-8 hover:border-primary/50 transition-all duration-500 hover:shadow-glow hover:-translate-y-2"
+            className="group bg-secondary/50 border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-[0_0_60px_hsl(32_95%_50%_/_0.2)] hover:-translate-y-2"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
-            <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent-gradient transition-all duration-300">
-              <service.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors" />
+            {/* Image */}
+            <div className="relative h-48 overflow-hidden">
+              <img 
+                src={service.image} 
+                alt={service.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+              <div className="absolute bottom-4 left-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-[hsl(32,95%,50%)] to-[hsl(25,95%,45%)] rounded-xl flex items-center justify-center shadow-lg">
+                  <service.icon className="w-6 h-6 text-primary-foreground" />
+                </div>
+              </div>
             </div>
-            <h3 className="font-display text-2xl text-foreground mb-3">{service.title}</h3>
-            <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+            
+            {/* Content */}
+            <div className="p-6">
+              <h3 className="font-display text-2xl text-foreground mb-3">{service.title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -242,20 +269,36 @@ const AboutSection = () => (
         </div>
 
         <div className="relative">
-          <div className="aspect-square bg-secondary rounded-2xl overflow-hidden border border-border">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent" />
-            <div className="h-full flex flex-col items-center justify-center p-8 text-center">
-              <div className="w-24 h-24 bg-accent-gradient rounded-2xl flex items-center justify-center mb-6 shadow-glow">
-                <HardHat className="w-12 h-12 text-primary-foreground" />
+          {/* Image Grid */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-4">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border">
+                <img src={serviceConstruction} alt="Construction" className="w-full h-full object-cover" />
               </div>
-              <h3 className="font-display text-5xl text-foreground mb-2">MBC</h3>
-              <p className="text-muted-foreground">Construction & Travaux Publics</p>
+              <div className="aspect-square rounded-2xl overflow-hidden border border-border">
+                <img src={serviceDemolition} alt="Démolition" className="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div className="space-y-4 pt-8">
+              <div className="aspect-square rounded-2xl overflow-hidden border border-border">
+                <img src={serviceTerrassement} alt="Terrassement" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border">
+                <img src={serviceMateriaux} alt="Matériaux" className="w-full h-full object-cover" />
+              </div>
             </div>
           </div>
           
-          {/* Floating Elements */}
-          <div className="absolute -top-6 -right-6 w-32 h-32 bg-primary/10 rounded-2xl border border-primary/20 animate-float" />
-          <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-primary/10 rounded-xl border border-primary/20 animate-float" style={{ animationDelay: '1s' }} />
+          {/* Floating Badge */}
+          <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[hsl(32,95%,50%)] to-[hsl(25,95%,45%)] px-8 py-4 rounded-2xl shadow-[0_0_60px_hsl(32_95%_50%_/_0.3)]">
+            <div className="flex items-center gap-4">
+              <HardHat className="w-8 h-8 text-primary-foreground" />
+              <div>
+                <div className="font-display text-2xl text-primary-foreground">MBC</div>
+                <div className="text-primary-foreground/80 text-sm">Construction & BTP</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -270,7 +313,7 @@ const ContactSection = () => (
       <div className="text-center mb-16">
         <span className="text-primary font-semibold text-sm tracking-wider uppercase">Contactez-Nous</span>
         <h2 className="font-display text-4xl md:text-6xl text-foreground mt-2">PARLONS DE VOTRE PROJET</h2>
-        <div className="w-24 h-1 bg-accent-gradient mx-auto mt-4 rounded-full" />
+        <div className="w-24 h-1 bg-gradient-to-r from-[hsl(32,95%,50%)] to-[hsl(25,95%,45%)] mx-auto mt-4 rounded-full" />
       </div>
 
       <div className="max-w-4xl mx-auto">
@@ -345,7 +388,7 @@ const Footer = () => (
     <div className="container mx-auto px-4">
       <div className="flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-accent-gradient rounded-lg flex items-center justify-center">
+          <div className="w-10 h-10 bg-gradient-to-r from-[hsl(32,95%,50%)] to-[hsl(25,95%,45%)] rounded-lg flex items-center justify-center">
             <HardHat className="w-6 h-6 text-primary-foreground" />
           </div>
           <span className="font-display text-2xl tracking-wider text-foreground">MBC</span>
