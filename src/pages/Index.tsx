@@ -1,6 +1,7 @@
-import { Building2, Truck, Mountain, HardHat, Phone, Mail, MapPin, Menu, X, Pickaxe, Package } from 'lucide-react';
+import { Building2, Truck, Mountain, HardHat, Phone, Mail, MapPin, Menu, X, Pickaxe, Package, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 import heroImage from '@/assets/hero-construction.jpg';
 import serviceConstruction from '@/assets/service-construction.jpg';
 import serviceDemolition from '@/assets/service-demolition.jpg';
@@ -305,83 +306,123 @@ const AboutSection = () => (
   </section>
 );
 
-const ContactSection = () => (
-  <section id="contact" className="py-24 bg-card relative overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+const ContactSection = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
     
-    <div className="container mx-auto px-4 relative z-10">
-      <div className="text-center mb-16">
-        <span className="text-primary font-semibold text-sm tracking-wider uppercase">Contactez-Nous</span>
-        <h2 className="font-display text-4xl md:text-6xl text-foreground mt-2">PARLONS DE VOTRE PROJET</h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-[hsl(32,95%,50%)] to-[hsl(25,95%,45%)] mx-auto mt-4 rounded-full" />
-      </div>
+    // Simulate form submission
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsSubmitted(true);
+      toast({
+        title: "Demande envoyée !",
+        description: "Votre demande a été bien envoyée. Nous vous contacterons très bientôt.",
+      });
+    }, 1000);
+  };
 
-      <div className="max-w-4xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          {[
-            { icon: Phone, label: 'Téléphone', value: '+XX XXX XXX XXX' },
-            { icon: Mail, label: 'Email', value: 'contact@mbc-construction.com' },
-            { icon: MapPin, label: 'Adresse', value: 'Votre Ville, Pays' },
-          ].map((contact) => (
-            <div key={contact.label} className="bg-secondary/50 border border-border rounded-xl p-6 text-center hover:border-primary/50 transition-all duration-300">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <contact.icon className="w-6 h-6 text-primary" />
-              </div>
-              <div className="text-muted-foreground text-sm mb-1">{contact.label}</div>
-              <div className="text-foreground font-medium">{contact.value}</div>
-            </div>
-          ))}
+  return (
+    <section id="contact" className="py-24 bg-card relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
+          <span className="text-primary font-semibold text-sm tracking-wider uppercase">Contactez-Nous</span>
+          <h2 className="font-display text-4xl md:text-6xl text-foreground mt-2">PARLONS DE VOTRE PROJET</h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-[hsl(32,95%,50%)] to-[hsl(25,95%,45%)] mx-auto mt-4 rounded-full" />
         </div>
 
-        <div className="bg-secondary/50 border border-border rounded-2xl p-8 md:p-12">
-          <form className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Nom Complet</label>
-                <input 
-                  type="text" 
-                  className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
-                  placeholder="Votre nom"
-                />
+        <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {[
+              { icon: Phone, label: 'Téléphone', value: '+XX XXX XXX XXX' },
+              { icon: Mail, label: 'Email', value: 'constructionmbc3@gmail.com' },
+              { icon: MapPin, label: 'Adresse', value: 'Votre Ville, Pays' },
+            ].map((contact) => (
+              <div key={contact.label} className="bg-secondary/50 border border-border rounded-xl p-6 text-center hover:border-primary/50 transition-all duration-300">
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <contact.icon className="w-6 h-6 text-primary" />
+                </div>
+                <div className="text-muted-foreground text-sm mb-1">{contact.label}</div>
+                <div className="text-foreground font-medium">{contact.value}</div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Email</label>
-                <input 
-                  type="email" 
-                  className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
-                  placeholder="votre@email.com"
-                />
+            ))}
+          </div>
+
+          <div className="bg-secondary/50 border border-border rounded-2xl p-8 md:p-12">
+            {isSubmitted ? (
+              <div className="text-center py-12">
+                <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle className="w-10 h-10 text-green-500" />
+                </div>
+                <h3 className="font-display text-2xl text-foreground mb-3">Demande Envoyée !</h3>
+                <p className="text-muted-foreground mb-6">
+                  Votre demande a été bien envoyée à notre équipe.<br />
+                  Nous vous contacterons très bientôt.
+                </p>
+                <Button variant="hero" onClick={() => setIsSubmitted(false)}>
+                  Envoyer une autre demande
+                </Button>
               </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-foreground mb-2">Service Souhaité</label>
-              <select className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
-                <option value="">Sélectionnez un service</option>
-                <option value="construction">Travaux de Construction</option>
-                <option value="demolition">Démolition</option>
-                <option value="terrassement">Terrassement</option>
-                <option value="excavation">Excavation</option>
-                <option value="location">Location de Camions</option>
-                <option value="materiaux">Fourniture de Matériaux</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-foreground mb-2">Message</label>
-              <textarea 
-                rows={5}
-                className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none"
-                placeholder="Décrivez votre projet..."
-              />
-            </div>
-            <Button variant="hero" size="xl" className="w-full">
-              Envoyer la Demande
-            </Button>
-          </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Nom Complet</label>
+                    <input 
+                      type="text" 
+                      required
+                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                      placeholder="Votre nom"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+                    <input 
+                      type="email" 
+                      required
+                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                      placeholder="votre@email.com"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Service Souhaité</label>
+                  <select required className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                    <option value="">Sélectionnez un service</option>
+                    <option value="construction">Travaux de Construction</option>
+                    <option value="demolition">Démolition</option>
+                    <option value="terrassement">Terrassement</option>
+                    <option value="excavation">Excavation</option>
+                    <option value="location">Location de Camions</option>
+                    <option value="materiaux">Fourniture de Matériaux</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Message</label>
+                  <textarea 
+                    rows={5}
+                    required
+                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none"
+                    placeholder="Décrivez votre projet..."
+                  />
+                </div>
+                <Button variant="hero" size="xl" className="w-full" disabled={isLoading}>
+                  {isLoading ? 'Envoi en cours...' : 'Envoyer la Demande'}
+                </Button>
+              </form>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const Footer = () => (
   <footer className="bg-background border-t border-border py-12">
