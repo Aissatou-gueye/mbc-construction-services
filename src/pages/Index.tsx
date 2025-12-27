@@ -2,6 +2,7 @@ import { Building2, Truck, Mountain, HardHat, Phone, Mail, MapPin, Menu, X, Pick
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 import heroImage from '@/assets/hero-construction.jpg';
 import serviceConstruction from '@/assets/service-construction.jpg';
 import serviceDemolition from '@/assets/service-demolition.jpg';
@@ -309,21 +310,40 @@ const AboutSection = () => (
 const ContactSection = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    service: '',
+    message: ''
+  });
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
+
+      if (error) throw error;
+
       setIsSubmitted(true);
       toast({
         title: "Demande envoyée !",
         description: "Votre demande a été bien envoyée. Nous vous contacterons très bientôt.",
       });
-    }, 1000);
+    } catch (error: any) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -377,6 +397,8 @@ const ContactSection = () => {
                     <input 
                       type="text" 
                       required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
                       placeholder="Votre nom"
                     />
@@ -386,6 +408,8 @@ const ContactSection = () => {
                     <input 
                       type="email" 
                       required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
                       placeholder="votre@email.com"
                     />
@@ -393,14 +417,19 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">Service Souhaité</label>
-                  <select required className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                  <select 
+                    required 
+                    value={formData.service}
+                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                  >
                     <option value="">Sélectionnez un service</option>
-                    <option value="construction">Travaux de Construction</option>
-                    <option value="demolition">Démolition</option>
-                    <option value="terrassement">Terrassement</option>
-                    <option value="excavation">Excavation</option>
-                    <option value="location">Location de Camions</option>
-                    <option value="materiaux">Fourniture de Matériaux</option>
+                    <option value="Travaux de Construction">Travaux de Construction</option>
+                    <option value="Démolition">Démolition</option>
+                    <option value="Terrassement">Terrassement</option>
+                    <option value="Excavation">Excavation</option>
+                    <option value="Location de Camions">Location de Camions</option>
+                    <option value="Fourniture de Matériaux">Fourniture de Matériaux</option>
                   </select>
                 </div>
                 <div>
@@ -408,6 +437,8 @@ const ContactSection = () => {
                   <textarea 
                     rows={5}
                     required
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none"
                     placeholder="Décrivez votre projet..."
                   />
