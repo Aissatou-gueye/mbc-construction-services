@@ -35,7 +35,7 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "Construction MBC <onboarding@resend.dev>",
-        to: ["aissatougueye042001@gmail.com"], // Temporaire: utilise l'email vérifié Resend
+        to: ["constructionmbc3@gmail.com"],
         subject: `Nouvelle demande de devis - ${service}`,
         html: `
           <h1>Nouvelle demande de devis</h1>
