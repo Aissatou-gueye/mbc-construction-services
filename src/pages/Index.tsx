@@ -42,7 +42,7 @@ const Navigation = () => {
               {link.label}
             </a>
           ))}
-          <Button variant="hero" size="sm">
+          <Button variant="hero" size="sm" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
             Devis Gratuit
           </Button>
         </div>
@@ -70,7 +70,7 @@ const Navigation = () => {
                 {link.label}
               </a>
             ))}
-            <Button variant="hero" size="sm" className="w-full">
+            <Button variant="hero" size="sm" className="w-full" onClick={() => { setIsOpen(false); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}>
               Devis Gratuit
             </Button>
           </div>
@@ -113,10 +113,10 @@ const HeroSection = () => (
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 animate-fade-up" style={{ animationDelay: '0.4s' }}>
-          <Button variant="hero" size="xl">
+          <Button variant="hero" size="xl" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
             Demander un Devis
           </Button>
-          <Button variant="heroOutline" size="xl">
+          <Button variant="heroOutline" size="xl" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
             Nos Services
           </Button>
         </div>
@@ -360,9 +360,9 @@ const ContactSection = () => {
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {[
-              { icon: Phone, label: 'Téléphone', value: '+XX XXX XXX XXX' },
+              { icon: Phone, label: 'Téléphone', value: '78 991 91 91' },
               { icon: Mail, label: 'Email', value: 'constructionmbc3@gmail.com' },
-              { icon: MapPin, label: 'Adresse', value: 'Votre Ville, Pays' },
+              { icon: MapPin, label: 'Adresse', value: 'Camberene quartier Medine' },
             ].map((contact) => (
               <div key={contact.label} className="bg-secondary/50 border border-border rounded-xl p-6 text-center hover:border-primary/50 transition-all duration-300">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
