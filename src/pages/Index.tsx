@@ -360,9 +360,9 @@ const ContactSection = () => {
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {[
-              { icon: Phone, label: 'Téléphone', value: '78 991 91 91' },
+              { icon: Phone, label: 'Téléphone', value: '+221 78 991 91 91' },
               { icon: Mail, label: 'Email', value: 'constructionmbc3@gmail.com' },
-              { icon: MapPin, label: 'Adresse', value: 'Camberene quartier Medine' },
+              { icon: MapPin, label: 'Adresse', value: 'Camberene quartier Medine, Dakar, Sénégal' },
             ].map((contact) => (
               <div key={contact.label} className="bg-secondary/50 border border-border rounded-xl p-6 text-center hover:border-primary/50 transition-all duration-300">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
