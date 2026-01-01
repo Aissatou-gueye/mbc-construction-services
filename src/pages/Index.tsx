@@ -25,7 +25,7 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <a href="#accueil" className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-gradient-to-r from-[hsl(32,95%,50%)] to-[hsl(25,95%,45%)] rounded-lg flex items-center justify-center">
+          <div className="w-10 h-10 bg-accent-gradient rounded-lg flex items-center justify-center">
             <HardHat className="w-6 h-6 text-primary-foreground" />
           </div>
           <span className="font-display text-2xl tracking-wider text-foreground">MBC</span>
@@ -195,14 +195,14 @@ const ServicesSection = () => (
       <div className="text-center mb-16">
         <span className="text-primary font-semibold text-sm tracking-wider uppercase">Ce Que Nous Faisons</span>
         <h2 className="font-display text-4xl md:text-6xl text-foreground mt-2">NOS SERVICES</h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-[hsl(32,95%,50%)] to-[hsl(25,95%,45%)] mx-auto mt-4 rounded-full" />
+        <div className="w-24 h-1 bg-accent-gradient mx-auto mt-4 rounded-full" />
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map((service, index) => (
           <div 
             key={service.title}
-            className="group bg-secondary/50 border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-[0_0_60px_hsl(32_95%_50%_/_0.2)] hover:-translate-y-2"
+            className="group bg-secondary/50 border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-glow hover:-translate-y-2"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             {/* Image */}
@@ -214,7 +214,7 @@ const ServicesSection = () => (
               />
               <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
               <div className="absolute bottom-4 left-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-[hsl(32,95%,50%)] to-[hsl(25,95%,45%)] rounded-xl flex items-center justify-center shadow-lg">
+                <div className="w-12 h-12 bg-accent-gradient rounded-xl flex items-center justify-center shadow-lg">
                   <service.icon className="w-6 h-6 text-primary-foreground" />
                 </div>
               </div>
@@ -292,7 +292,7 @@ const AboutSection = () => (
           </div>
           
           {/* Floating Badge */}
-          <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[hsl(32,95%,50%)] to-[hsl(25,95%,45%)] px-8 py-4 rounded-2xl shadow-[0_0_60px_hsl(32_95%_50%_/_0.3)]">
+          <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-accent-gradient px-8 py-4 rounded-2xl shadow-glow">
             <div className="flex items-center gap-4">
               <HardHat className="w-8 h-8 text-primary-foreground" />
               <div>
@@ -354,7 +354,7 @@ const ContactSection = () => {
         <div className="text-center mb-16">
           <span className="text-primary font-semibold text-sm tracking-wider uppercase">Contactez-Nous</span>
           <h2 className="font-display text-4xl md:text-6xl text-foreground mt-2">PARLONS DE VOTRE PROJET</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[hsl(32,95%,50%)] to-[hsl(25,95%,45%)] mx-auto mt-4 rounded-full" />
+          <div className="w-24 h-1 bg-accent-gradient mx-auto mt-4 rounded-full" />
         </div>
 
         <div className="max-w-4xl mx-auto">
@@ -460,7 +460,7 @@ const Footer = () => (
     <div className="container mx-auto px-4">
       <div className="flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-gradient-to-r from-[hsl(32,95%,50%)] to-[hsl(25,95%,45%)] rounded-lg flex items-center justify-center">
+          <div className="w-10 h-10 bg-accent-gradient rounded-lg flex items-center justify-center">
             <HardHat className="w-6 h-6 text-primary-foreground" />
           </div>
           <span className="font-display text-2xl tracking-wider text-foreground">MBC</span>
