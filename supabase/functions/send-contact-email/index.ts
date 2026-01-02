@@ -34,7 +34,7 @@ const handler = async (req: Request): Promise<Response> => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Construction MBC <onboarding@resend.dev>",
+        from: "Construction MBC <contact@mbc-construction.com>",
         to: ["constructionmbc3@gmail.com"],
         subject: `Nouvelle demande de devis - ${service}`,
         html: `
@@ -63,7 +63,7 @@ const handler = async (req: Request): Promise<Response> => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Construction MBC <onboarding@resend.dev>",
+        from: "Construction MBC <contact@mbc-construction.com>",
         to: [email],
         subject: "Confirmation de votre demande - Construction MBC",
         html: `
