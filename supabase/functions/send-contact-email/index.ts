@@ -35,7 +35,7 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "Construction MBC <onboarding@resend.dev>",
-        to: ["constructionmbc3@gmail.com"],
+        to: ["aissatougueye042001@gmail.com"],
         subject: `Nouvelle demande de devis - ${service}`,
         html: `
           <h1>Nouvelle demande de devis</h1>
@@ -64,7 +64,7 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "Construction MBC <onboarding@resend.dev>",
-        to: [email],
+        to: ["aissatougueye042001@gmail.com"],
         subject: "Confirmation de votre demande - Construction MBC",
         html: `
           <h1>Merci pour votre demande, ${name}!</h1>
