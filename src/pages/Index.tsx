@@ -2,7 +2,7 @@ import { Building2, Truck, Mountain, HardHat, Phone, Mail, MapPin, Menu, X, Pick
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/integrations/supabase/client';
+
 import heroImage from '@/assets/hero-construction.jpg';
 import serviceConstruction from '@/assets/service-construction.jpg';
 import serviceDemolition from '@/assets/service-demolition.jpg';
@@ -13,7 +13,7 @@ import serviceMateriaux from '@/assets/service-materiaux.jpg';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const navLinks = [
     { href: '#accueil', label: 'Accueil' },
     { href: '#services', label: 'Services' },
@@ -30,13 +30,13 @@ const Navigation = () => {
           </div>
           <span className="font-display text-2xl tracking-wider text-foreground">MBC</span>
         </a>
-        
+
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a 
+            <a
               key={link.href}
-              href={link.href} 
+              href={link.href}
               className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium"
             >
               {link.label}
@@ -48,7 +48,7 @@ const Navigation = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button 
+        <button
           className="md:hidden text-foreground"
           onClick={() => setIsOpen(!isOpen)}
         >
@@ -61,9 +61,9 @@ const Navigation = () => {
         <div className="md:hidden bg-card border-t border-border animate-fade-in">
           <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
-              <a 
+              <a
                 key={link.href}
-                href={link.href} 
+                href={link.href}
                 className="text-muted-foreground hover:text-primary transition-colors py-2"
                 onClick={() => setIsOpen(false)}
               >
@@ -84,9 +84,9 @@ const HeroSection = () => (
   <section id="accueil" className="relative min-h-screen flex items-center justify-center overflow-hidden">
     {/* Background Image */}
     <div className="absolute inset-0 z-0">
-      <img 
-        src={heroImage} 
-        alt="Chantier de construction MBC" 
+      <img
+        src={heroImage}
+        alt="Chantier de construction MBC"
         className="w-full h-full object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/40" />
@@ -101,17 +101,17 @@ const HeroSection = () => (
             Expert en Construction & Travaux Publics
           </span>
         </div>
-        
+
         <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-foreground leading-none mb-6 animate-fade-up" style={{ animationDelay: '0.2s' }}>
           BÂTIR VOTRE
           <span className="text-gradient block">AVENIR</span>
         </h1>
-        
+
         <p className="text-lg md:text-xl text-muted-foreground max-w-xl mb-8 animate-fade-up" style={{ animationDelay: '0.3s' }}>
-          MBC, votre partenaire de confiance pour tous vos projets de construction, 
+          MBC, votre partenaire de confiance pour tous vos projets de construction,
           terrassement, démolition et fourniture de matériaux.
         </p>
-        
+
         <div className="flex flex-col sm:flex-row gap-4 animate-fade-up" style={{ animationDelay: '0.4s' }}>
           <Button variant="hero" size="xl" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
             Demander un Devis
@@ -190,7 +190,7 @@ const ServicesSection = () => (
     {/* Decorative Elements */}
     <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
     <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-    
+
     <div className="container mx-auto px-4 relative z-10">
       <div className="text-center mb-16">
         <span className="text-primary font-semibold text-sm tracking-wider uppercase">Ce Que Nous Faisons</span>
@@ -200,15 +200,15 @@ const ServicesSection = () => (
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map((service, index) => (
-          <div 
+          <div
             key={service.title}
             className="group bg-secondary/50 border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-glow hover:-translate-y-2"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             {/* Image */}
             <div className="relative h-48 overflow-hidden">
-              <img 
-                src={service.image} 
+              <img
+                src={service.image}
                 alt={service.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
@@ -219,7 +219,7 @@ const ServicesSection = () => (
                 </div>
               </div>
             </div>
-            
+
             {/* Content */}
             <div className="p-6">
               <h3 className="font-display text-2xl text-foreground mb-3">{service.title}</h3>
@@ -243,15 +243,15 @@ const AboutSection = () => (
             <span className="text-gradient block">DEPUIS DES ANNÉES</span>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-            MBC est une entreprise spécialisée dans les travaux de construction et de génie civil. 
-            Notre expertise couvre l'ensemble des métiers du BTP, de la démolition à la construction, 
+            MBC est une entreprise spécialisée dans les travaux de construction et de génie civil.
+            Notre expertise couvre l'ensemble des métiers du BTP, de la démolition à la construction,
             en passant par le terrassement et l'excavation.
           </p>
           <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-            Nous mettons à disposition de nos clients une flotte de camions et une large gamme 
+            Nous mettons à disposition de nos clients une flotte de camions et une large gamme
             de matériaux de qualité supérieure, notamment du gravier basalte et du sable.
           </p>
-          
+
           <div className="grid grid-cols-2 gap-6">
             {[
               { title: 'Qualité Garantie', desc: 'Matériaux certifiés' },
@@ -290,7 +290,7 @@ const AboutSection = () => (
               </div>
             </div>
           </div>
-          
+
           {/* Floating Badge */}
           <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-accent-gradient px-8 py-4 rounded-2xl shadow-glow">
             <div className="flex items-center gap-4">
@@ -321,138 +321,148 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: formData
-      });
 
-      if (error) throw error;
+    // Utilise la variable d'environnement VITE_API_URL si elle existe (production),
+    // sinon utilise le chemin relatif qui passera par le proxy (développement)
+    const baseUrl = import.meta.env.VITE_API_URL || '';
+    const response = await fetch(`${baseUrl}/api/send-email`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
 
-      setIsSubmitted(true);
-      toast({
-        title: "Demande envoyée !",
-        description: "Votre demande a été bien envoyée. Nous vous contacterons très bientôt.",
-      });
-    } catch (error: any) {
-      console.error('Error sending email:', error);
-      toast({
-        title: "Erreur",
-        description: "Une erreur est survenue. Veuillez réessayer.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Une erreur est survenue lors de l\'envoi');
     }
-  };
 
-  return (
-    <section id="contact" className="py-24 bg-card relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <span className="text-primary font-semibold text-sm tracking-wider uppercase">Contactez-Nous</span>
-          <h2 className="font-display text-4xl md:text-6xl text-foreground mt-2">PARLONS DE VOTRE PROJET</h2>
-          <div className="w-24 h-1 bg-accent-gradient mx-auto mt-4 rounded-full" />
+    setIsSubmitted(true);
+    toast({
+      title: "Demande envoyée !",
+      description: "Votre demande a été bien envoyée. Nous vous contacterons très bientôt.",
+    });
+  } catch (error: any) {
+    console.error('Error sending email:', error);
+    toast({
+      title: "Erreur",
+      description: "Une erreur est survenue. Veuillez réessayer.",
+      variant: "destructive",
+    });
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+return (
+  <section id="contact" className="py-24 bg-card relative overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+
+    <div className="container mx-auto px-4 relative z-10">
+      <div className="text-center mb-16">
+        <span className="text-primary font-semibold text-sm tracking-wider uppercase">Contactez-Nous</span>
+        <h2 className="font-display text-4xl md:text-6xl text-foreground mt-2">PARLONS DE VOTRE PROJET</h2>
+        <div className="w-24 h-1 bg-accent-gradient mx-auto mt-4 rounded-full" />
+      </div>
+
+      <div className="max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {[
+            { icon: Phone, label: 'Téléphone', value: '+221 78 991 91 91' },
+            { icon: Mail, label: 'Email', value: 'constructionmbc3@gmail.com' },
+            { icon: MapPin, label: 'Adresse', value: 'Camberene quartier Medine, Dakar, Sénégal' },
+          ].map((contact) => (
+            <div key={contact.label} className="bg-secondary/50 border border-border rounded-xl p-6 text-center hover:border-primary/50 transition-all duration-300">
+              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <contact.icon className="w-6 h-6 text-primary" />
+              </div>
+              <div className="text-muted-foreground text-sm mb-1">{contact.label}</div>
+              <div className="text-foreground font-medium">{contact.value}</div>
+            </div>
+          ))}
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {[
-              { icon: Phone, label: 'Téléphone', value: '+221 78 991 91 91' },
-              { icon: Mail, label: 'Email', value: 'constructionmbc3@gmail.com' },
-              { icon: MapPin, label: 'Adresse', value: 'Camberene quartier Medine, Dakar, Sénégal' },
-            ].map((contact) => (
-              <div key={contact.label} className="bg-secondary/50 border border-border rounded-xl p-6 text-center hover:border-primary/50 transition-all duration-300">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <contact.icon className="w-6 h-6 text-primary" />
-                </div>
-                <div className="text-muted-foreground text-sm mb-1">{contact.label}</div>
-                <div className="text-foreground font-medium">{contact.value}</div>
+        <div className="bg-secondary/50 border border-border rounded-2xl p-8 md:p-12">
+          {isSubmitted ? (
+            <div className="text-center py-12">
+              <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <CheckCircle className="w-10 h-10 text-green-500" />
               </div>
-            ))}
-          </div>
-
-          <div className="bg-secondary/50 border border-border rounded-2xl p-8 md:p-12">
-            {isSubmitted ? (
-              <div className="text-center py-12">
-                <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle className="w-10 h-10 text-green-500" />
-                </div>
-                <h3 className="font-display text-2xl text-foreground mb-3">Demande Envoyée !</h3>
-                <p className="text-muted-foreground mb-6">
-                  Votre demande a été bien envoyée à notre équipe.<br />
-                  Nous vous contacterons très bientôt.
-                </p>
-                <Button variant="hero" onClick={() => setIsSubmitted(false)}>
-                  Envoyer une autre demande
-                </Button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Nom Complet</label>
-                    <input 
-                      type="text" 
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
-                      placeholder="Votre nom"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Email</label>
-                    <input 
-                      type="email" 
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
-                      placeholder="votre@email.com"
-                    />
-                  </div>
-                </div>
+              <h3 className="font-display text-2xl text-foreground mb-3">Demande Envoyée !</h3>
+              <p className="text-muted-foreground mb-6">
+                Votre demande a été bien envoyée à notre équipe.<br />
+                Nous vous contacterons très bientôt.
+              </p>
+              <Button variant="hero" onClick={() => setIsSubmitted(false)}>
+                Envoyer une autre demande
+              </Button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Service Souhaité</label>
-                  <select 
-                    required 
-                    value={formData.service}
-                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
-                  >
-                    <option value="">Sélectionnez un service</option>
-                    <option value="Travaux de Construction">Travaux de Construction</option>
-                    <option value="Démolition">Démolition</option>
-                    <option value="Terrassement">Terrassement</option>
-                    <option value="Excavation">Excavation</option>
-                    <option value="Location de Camions">Location de Camions</option>
-                    <option value="Fourniture de Matériaux">Fourniture de Matériaux</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Message</label>
-                  <textarea 
-                    rows={5}
+                  <label className="block text-sm font-medium text-foreground mb-2">Nom Complet</label>
+                  <input
+                    type="text"
                     required
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none"
-                    placeholder="Décrivez votre projet..."
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                    placeholder="Votre nom"
                   />
                 </div>
-                <Button variant="hero" size="xl" className="w-full" disabled={isLoading}>
-                  {isLoading ? 'Envoi en cours...' : 'Envoyer la Demande'}
-                </Button>
-              </form>
-            )}
-          </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                    placeholder="votre@email.com"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">Service Souhaité</label>
+                <select
+                  required
+                  value={formData.service}
+                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                  className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                >
+                  <option value="">Sélectionnez un service</option>
+                  <option value="Travaux de Construction">Travaux de Construction</option>
+                  <option value="Démolition">Démolition</option>
+                  <option value="Terrassement">Terrassement</option>
+                  <option value="Excavation">Excavation</option>
+                  <option value="Location de Camions">Location de Camions</option>
+                  <option value="Fourniture de Matériaux">Fourniture de Matériaux</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">Message</label>
+                <textarea
+                  rows={5}
+                  required
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none"
+                  placeholder="Décrivez votre projet..."
+                />
+              </div>
+              <Button variant="hero" size="xl" className="w-full" disabled={isLoading}>
+                {isLoading ? 'Envoi en cours...' : 'Envoyer la Demande'}
+              </Button>
+            </form>
+          )}
         </div>
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
 };
 
 const Footer = () => (
@@ -465,7 +475,7 @@ const Footer = () => (
           </div>
           <span className="font-display text-2xl tracking-wider text-foreground">MBC</span>
         </div>
-        
+
         <p className="text-muted-foreground text-sm text-center">
           © 2024 MBC Construction. Tous droits réservés.
         </p>
